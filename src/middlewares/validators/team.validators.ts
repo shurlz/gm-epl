@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
 export const teamRequest = Joi.object({
-    username: Joi.string().required(),
-    password: Joi.string().required()
+    name: Joi.string().required(),
+    location: Joi.string().required()
 });
