@@ -19,4 +19,7 @@ app.use('/teams', teamRoutes);
 app.use('/search', searchRoutes);
 app.use('/fixtures', fixturesRoutes);
 
+// catch all unmatched requests
+app.use((req, res, next) => {res.status(405).json({ message: 'Unsupported Request'})});
+
 export default app;

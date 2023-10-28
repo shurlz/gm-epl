@@ -9,9 +9,9 @@ export interface IUser extends Document {
   isAdmin: boolean;
   verifyPassword(password: string): Promise<boolean>;
   generateToken(): Promise<string>;
-  decryptToken(token: string): Promise<DecryptTokenType>;
 };
   
 export interface IUserModel extends Model<IUser> {
   createNewUser(username: string, password: string, isAdmin?: boolean): Promise<IUser>;
+  decryptToken(token: string): Promise<DecryptTokenType>;
 };
