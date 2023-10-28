@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:7.2.1-alpine
+    restart: on-failure
+    ports:
+      - 6379:6379
+    environment:
+      REDIS_PORT: 6379
+    networks:
+      - gm_network
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    networks:
+      - gm_network
+
+  app-backend:
+    build: .
+    ports:
+      - 4500:4500
+    env_file:
+      - .docker.env
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - gm_network
+
+networks:
+  gm_network:
