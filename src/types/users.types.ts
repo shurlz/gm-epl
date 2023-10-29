@@ -9,6 +9,7 @@ export interface IUser extends Document {
   isAdmin: boolean;
   verifyPassword(password: string): Promise<boolean>;
   generateToken(): Promise<string>;
+  userResponse(): Promise<object>;
 };
   
 export interface IUserModel extends Model<IUser> {

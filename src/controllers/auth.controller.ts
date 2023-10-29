@@ -14,7 +14,7 @@ export const signIn = async (req: Request, res: Response) => {
   if (!passwordIsValid) return res.status(400).json({ message: 'Invalid Password' });
 
   const token = await user.generateToken();
-  return res.status(200).json({ token, user });
+  return res.status(200).json({ token, user: await user.userResponse() });
 };
 
 export const signUp = async (req: Request, res: Response) => {
@@ -32,5 +32,5 @@ export const signUp = async (req: Request, res: Response) => {
   );
 
   const token = await user.generateToken();
-  return res.status(201).json({ token, user });
+  return res.status(201).json({ token, user: await user.userResponse() });
 };

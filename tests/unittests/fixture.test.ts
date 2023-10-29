@@ -3,16 +3,15 @@ dotenv.config();
 import mongoose from 'mongoose';
 import { faker } from '@faker-js/faker';
 import Fixtures from '../../src/models/fixtures.model';
-import { MONGO_URL } from '../../src/constants/env.constants';
 import { BASE_URL } from '../../src/constants/app.constants';
+import redis from '../../src/services/redis.service';
+import { MONGO_URL } from '../../src/constants/env.constants';
 
-beforeAll(async () => {
-  await mongoose.connect(MONGO_URL);
-});
 
-afterAll(async () => {
-  await mongoose.connection.close();
-});
+beforeAll(async () => { await mongoose.connect(MONGO_URL) });
+afterAll(async () => { await mongoose.connection.close() });
+
+afterAll(async () => { await redis.quit() });
 
 describe("Fixtures [Create Fixture; Generate Unique URL; Archive]", () => {
   it("test static method to create fixture works", async () => {

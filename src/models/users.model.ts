@@ -29,6 +29,10 @@ userSchema.methods.generateToken = async function (): Promise<string> {
   return token;
 };
 
+userSchema.methods.userResponse = async function (): Promise<object> {
+  return { _id: this._id, username: this.username, isAdmin: this.isAdmin };
+};
+
 userSchema.statics.createNewUser = async function (
   username: string, password: string, isAdmin: boolean = false
 ): Promise<IUser> {

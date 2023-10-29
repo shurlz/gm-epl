@@ -3,15 +3,14 @@ dotenv.config();
 import mongoose from 'mongoose';
 import { faker } from '@faker-js/faker';
 import Teams from '../../src/models/teams.model';
+import redis from '../../src/services/redis.service';
 import { MONGO_URL } from '../../src/constants/env.constants';
 
-beforeAll(async () => {
-  await mongoose.connect(MONGO_URL);
-});
 
-afterAll(async () => {
-  await mongoose.connection.close();
-});
+beforeAll(async () => { await mongoose.connect(MONGO_URL) });
+afterAll(async () => { await mongoose.connection.close() });
+
+afterAll(async () => { await redis.quit() });
 
 describe("Teams [Create Team; Archive]", () => {
   it("test static method to create team works", async () => {

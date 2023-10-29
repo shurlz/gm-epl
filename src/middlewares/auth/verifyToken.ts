@@ -11,7 +11,7 @@ export const verifyToken = (req: AuthRequest, res: Response, next: NextFunction)
   const [bearer, token] = authHeader.split(" ");
 
   if (bearer.toLowerCase() !== 'bearer' || !token) { 
-    return res.status(403).json({ error: 'Invalid Token Fotmat' });
+    return res.status(403).json({ error: 'Invalid Token Format' });
   };
 
   jwt.verify(token, TOKEN_SECRET, (err: any, decoded: any) => {

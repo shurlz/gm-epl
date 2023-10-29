@@ -15,7 +15,7 @@ export class SeedDatabase {
     for (let i=0; i < 50; i++) {
       try {
         let newUser = await Users.createNewUser(
-          faker.person.firstName(),
+          faker.person.fullName(),
           faker.internet.password(),
         );
         this.users.push(newUser._id);
