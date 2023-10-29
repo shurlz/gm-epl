@@ -12,14 +12,14 @@ curl -SL https://github.com/docker/compose/releases/download/v2.3.3/docker-compo
 chmod +x ~/.docker/cli-plugins/docker-compose
 docker compose version
 
-echo "***** CLONE CODE *****"
-git clone https://github.com/shurlz/gm-epl.git
+# git clone https://github.com/shurlz/gm-epl.git
 
-if [! -d "gm-epl"]
+cd ../ # back to the root directory which contains the docker compose file
+
+if [! -f "docker-compose.yml"]
 then
-    echo "code directory not found"
+    echo "docker compose file not found"
 else
-    cd gm-epl
-    docker compose up -d
+    sudo docker compose up -d
     echo "***** SERVER RUNNING SUCCESSFULLY *****"
 fi
